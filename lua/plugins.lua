@@ -33,6 +33,9 @@ return require('packer').startup(function(use)
   })
   use 'williamboman/nvim-lsp-installer'  -- Helper for installing most language servers
 
+  -- Rust LSP tools
+  use 'simrat39/rust-tools.nvim'
+
   -- Autocomplete
   use({
     "hrsh7th/nvim-cmp",
@@ -41,12 +44,13 @@ return require('packer').startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua",
+      --"hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
-      "saadparwaiz1/cmp_luasnip",
+      --"saadparwaiz1/cmp_luasnip",
     },
     config = function() require('plugins.cmp') end,
   })
+
 
   -- Treesitter
   use({
@@ -56,8 +60,8 @@ return require('packer').startup(function(use)
   })
 
   -- Snippets
-  use {"L3MON4D3/LuaSnip", config = function() require('plugins.snippets') end}
-  use "rafamadriz/friendly-snippets"
+  -- use {"L3MON4D3/LuaSnip", config = function() require('plugins.snippets') end}
+  -- use "rafamadriz/friendly-snippets"
 
   -- Signature help
   use "ray-x/lsp_signature.nvim"
@@ -104,6 +108,12 @@ return require('packer').startup(function(use)
   -- git commands
   use 'tpope/vim-fugitive'
 
+  -- Hop, sneak and easymotion for nvim
+  use ({
+    'phaazon/hop.nvim',
+    config = function() require('hop').setup() end,
+  })
+
   -- Gitsigns
   use ({
     'lewis6991/gitsigns.nvim',
@@ -149,6 +159,7 @@ return require('packer').startup(function(use)
   -- Themes
   use 'folke/tokyonight.nvim'
   use 'marko-cerovac/material.nvim'
+  use 'Mofiqul/dracula.nvim'
 
   if packer_bootstrap then
     require('packer').sync()

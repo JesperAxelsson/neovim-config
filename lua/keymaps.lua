@@ -72,14 +72,14 @@ vnoremap("<leader>nh", ":nohlsearch<CR>")
 -- Local list
 nnoremap("<leader>lo", ":lopen<CR>")
 nnoremap("<leader>lc", ":lclose<CR>")
-nnoremap("<C-n>", ":lnext<CR>")
-nnoremap("<C-p>", ":lprev<CR>")
+nnoremap("<C-f><C-n>", ":lnext<CR>")
+nnoremap("<C-f><C-p>", ":lprev<CR>")
 
 -- Quickfix list
 nnoremap("<leader>co", ":copen<CR>")
 nnoremap("<leader>cc", ":cclose<CR>")
-nnoremap("<C-N>", ":cnext<CR>")
-nnoremap("<C-P>", ":cprev<CR>")
+nnoremap("<C-f><C-N>", ":cnext<CR>")
+nnoremap("<C-f><C-P>", ":cprev<CR>")
 
 -- Open file in default application
 nnoremap("<leader>xo", "<Cmd> !xdg-open %<CR><CR>")
@@ -98,15 +98,37 @@ nnoremap("<leader>D", "<Cmd>lua vim.diagnostic.setloclist()<CR>")
 nnoremap("<leader><A-d>", "<Cmd>lua vim.diagnostic.setqflist()<CR>")
 
 -- Telescope
-nnoremap("<leader>ff", "<Cmd>Telescope find_files<CR>")
+nnoremap("<C-p>", "<Cmd>Telescope find_files<CR>")
 nnoremap("<leader>fhf","<Cmd>Telescope find_files hidden=true<CR>")
-nnoremap("<leader>fb", "<Cmd>Telescope buffers<CR>")
-nnoremap("<leader>fg", "<Cmd>Telescope live_grep<CR>")
+nnoremap("<leader>b", "<Cmd>Telescope buffers<CR>")
+nnoremap("<leader>f", "<Cmd>Telescope live_grep<CR>")
 
 -- File explorer
-nnoremap("<leader>e", "<Cmd>NvimTreeToggle<CR>")  -- NvimTree
+  nnoremap("<leader>e", "<Cmd>NvimTreeToggle<CR>")  -- NvimTree
 -- nnoremap("<leader>e", "<Cmd>RnvimrToggle<CR>")
 
 -- EasyAlign
 -- xmap("ga", "<cmd>EasyAlign")
 -- nmap("ga", "<cmd>EasyAlign")
+
+
+-- normal mode (easymotion-like)
+vim.api.nvim_set_keymap("n", "<Leader><Leader>b", "<cmd>HopWordBC<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<Leader><Leader>w", "<cmd>HopWordAC<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<Leader><Leader>j", "<cmd>HopLineAC<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<Leader><Leader>k", "<cmd>HopLineBC<CR>", {noremap=true})
+
+-- visual mode (easymotion-like)
+vim.api.nvim_set_keymap("v", "<Leader><Leader>w", "<cmd>HopWordAC<CR>", {noremap=true})
+vim.api.nvim_set_keymap("v", "<Leader><Leader>b", "<cmd>HopWordBC<CR>", {noremap=true})
+vim.api.nvim_set_keymap("v", "<Leader><Leader>j", "<cmd>HopLineAC<CR>", {noremap=true})
+vim.api.nvim_set_keymap("v", "<Leader><Leader>k", "<cmd>HopLineBC<CR>", {noremap=true})
+
+
+-- normal mode (sneak-like)
+vim.api.nvim_set_keymap("n", "s", "<cmd>HopChar2AC<CR>", {noremap=false})
+vim.api.nvim_set_keymap("n", "S", "<cmd>HopChar2BC<CR>", {noremap=false})
+
+-- visual mode (sneak-like)
+vim.api.nvim_set_keymap("v", "s", "<cmd>HopChar2AC<CR>", {noremap=false})
+vim.api.nvim_set_keymap("v", "S", "<cmd>HopChar2BC<CR>", {noremap=false})
